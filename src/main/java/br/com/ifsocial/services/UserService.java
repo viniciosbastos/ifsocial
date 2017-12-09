@@ -12,7 +12,7 @@ import br.com.ifsocial.models.User;
 import br.com.ifsocial.repositories.IUserRepository;
 
 @RestController
-@RequestMapping("/user/{userId}")
+@RequestMapping("/user")
 public class UserService {
 	
 	private final IUserRepository userRepository;
@@ -22,8 +22,9 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(path="/{userId}/home", method = RequestMethod.GET)
 	public Collection<User> getUsers(@PathVariable Integer userId) {
 		return this.userRepository.findById(userId);
 	}
+
 }

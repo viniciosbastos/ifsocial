@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name="profile")
 public class Profile {
 
@@ -20,6 +22,7 @@ public class Profile {
 	@Column(name="description")
 	private String description;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="profile")
 	private Set<User> users = new HashSet<User>();
 	

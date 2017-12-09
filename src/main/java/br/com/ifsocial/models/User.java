@@ -43,10 +43,11 @@ public class User {
 
 	@JsonIgnore
 	@ManyToOne
+	@JoinColumn(name = "profile_id")
 	private Profile profile;
 
 	public User() {
-	};
+	}
 
 	public Integer getId() {
 		return id;
@@ -104,4 +105,19 @@ public class User {
 		this.birthday = birthday;
 	}
 
+	public Long getRegistration() {
+		return registration;
+	}
+
+	public void setRegistration(Long registration) {
+		this.registration = registration;
+	}
+
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}	
 }
