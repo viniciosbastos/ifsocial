@@ -1,13 +1,17 @@
 package br.com.ifsocial.models;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -45,6 +49,38 @@ public class User {
 	@ManyToOne
 	@JoinColumn(name = "profile_id")
 	private Profile profile;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "creator", fetch = FetchType.LAZY)
+	private Set<Group> groupsCreated = new HashSet<Group>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "creator", fetch = FetchType.LAZY)
+	private Set<Issue> issuesCreated = new HashSet<Issue>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "creator", fetch = FetchType.LAZY)
+	private Set<IssueMessage> comments = new HashSet<IssueMessage>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "creator", fetch = FetchType.LAZY)
+	private Set<Post> posts = new HashSet<Post>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "receiver", fetch = FetchType.LAZY)
+	private Set<PrivateMessage> messagesReceived = new HashSet<PrivateMessage>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
+	private Set<PrivateMessage> messagesSent = new HashSet<PrivateMessage>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "followed", fetch = FetchType.LAZY)
+	private Set<Issue> followers = new HashSet<Issue>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	private Set<Issue> following = new HashSet<Issue>();
 
 	public User() {
 	}
