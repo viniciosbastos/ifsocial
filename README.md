@@ -22,29 +22,23 @@ Response:
     "data": {
         "posts": [
             {
+                "id": 3,
                 "text": "Teste post Renan",
-                "creation": 1512919800000,
+                "creation": "10/12/2017 12:30",
                 "creator": {
                     "id": 4,
-                    "registration": 444444,
                     "name": "Renan Silva",
-                    "address": null,
-                    "interests": null,
-                    "email": "renan.silva@ifce.edu.br",
-                    "birthday": null
+                    "imagePath": "http://www.tshirtvortex.net/wp-content/uploads/Lannister-Lion.jpg"
                 }
             },
             {
+                "id": 1,
                 "text": "Teste post Francisco",
-                "creation": 1512918000000,
+                "creation": "10/12/2017 12:00",
                 "creator": {
                     "id": 2,
-                    "registration": 222222,
                     "name": "Francisco Aguiar",
-                    "address": null,
-                    "interests": null,
-                    "email": "francisco.aguiar@ifce.edu.br",
-                    "birthday": null
+                    "imagePath": "https://vignette.wikia.nocookie.net/gameofthrones/images/e/e6/House-Frey-Main-Shield.PNG/revision/latest?cb=20170523011255"
                 }
             }
         ]
@@ -67,34 +61,58 @@ Response:
     "data": {
         "createdBy": [
             {
-                "id": 2,
                 "name": "Huehue da Comp",
-                "creation": 1512874800000,
                 "creator": {
                     "id": 3,
-                    "registration": 333333,
                     "name": "Aurelio Vinicios",
-                    "address": null,
-                    "interests": null,
-                    "email": "aurelio.vinicios@ifce.edu.br",
-                    "birthday": null
-                }
+                    "imagePath": "https://i.pinimg.com/236x/90/7e/73/907e73f8a7a93fb60da9b9998741f767--window-decals-window-wall.jpg"
+                },
+                "quantityMembers": null,
+                "issues": []
             }
         ],
         "participate": [
             {
-                "id": 1,
                 "name": "Grupo Eng de Soft",
-                "creation": 1512874800000,
                 "creator": {
                     "id": 2,
-                    "registration": 222222,
                     "name": "Francisco Aguiar",
-                    "address": null,
-                    "interests": null,
-                    "email": "francisco.aguiar@ifce.edu.br",
-                    "birthday": null
-                }
+                    "imagePath": "https://vignette.wikia.nocookie.net/gameofthrones/images/e/e6/House-Frey-Main-Shield.PNG/revision/latest?cb=20170523011255"
+                },
+                "quantityMembers": null,
+                "issues": [
+                    {
+                        "name": "Teste issue",
+                        "id": 1,
+                        "quantity_comments": 1
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+(GET) /group/{groupId}
+
+Retorna as informações da tela do grupo.
+
+Exemplo:
+
+Request: /group/1
+
+```json
+{
+    "sucess": true,
+    "data": {
+        "name": "Grupo Eng de Soft",
+        "creatorName": "Francisco Aguiar",
+        "quantityMembers": 2,
+        "issues": [
+            {
+                "name": "Teste issue",
+                "id": 1,
+                "quantity_comments": 1
             }
         ]
     }

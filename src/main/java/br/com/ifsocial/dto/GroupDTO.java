@@ -1,37 +1,63 @@
 package br.com.ifsocial.dto;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import br.com.ifsocial.models.Group;
+import br.com.ifsocial.models.Issue;
 
-public class GroupDTO implements IResponseDTO{
+public class GroupDTO implements IResponseDTO {
 
-	private Collection<Group> createdBy;
-	
-	private Collection<Group> participate;
-	
-	public GroupDTO() {		
-	}
-	
-	public GroupDTO(Collection<Group> groups) {
-		this.createdBy = groups;
-	}
-	
-	public Collection<Group> getCreatedBy() {
-		return createdBy;
+	private String name;
+
+	private CreatorDTO creator;
+
+	private Integer quantityMembers;
+
+	private Collection<IssueDTO> issues;
+
+	public GroupDTO() {
 	}
 
-	public void setCreatedBy(Collection<Group> createdBy) {
-		this.createdBy = createdBy;
+	public GroupDTO(Group group) {
+		this.name = group.getName();
+		this.creator = new CreatorDTO(group.getCreator());
+
+		this.issues = new ArrayList<>();
+		for (Issue issue : group.getIssues()) {
+			issues.add(new IssueDTO(issue));
+		}
 	}
 
-	public Collection<Group> getParticipate() {
-		return participate;
+	public String getName() {
+		return name;
 	}
 
-	public void setParticipate(Collection<Group> participate) {
-		this.participate = participate;
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	
+
+	public CreatorDTO getCreator() {
+		return creator;
+	}
+
+	public void setCreator(CreatorDTO creator) {
+		this.creator = creator;
+	}
+
+	public Integer getQuantityMembers() {
+		return quantityMembers;
+	}
+
+	public void setQuantityMembers(Integer quantityMembers) {
+		this.quantityMembers = quantityMembers;
+	}
+
+	public Collection<IssueDTO> getIssues() {
+		return issues;
+	}
+
+	public void setIssues(Collection<IssueDTO> issues) {
+		this.issues = issues;
+	}
 }

@@ -3444,3 +3444,13 @@ insert into program (id, name, dt_creation) value (1, 'Engenharia de Computaçã
 2017-12-10 16:01:30 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLException: Table "GRUPS" not found; SQL statement:
 insert into grups (id, dt_creation, name, creator_id) values (1, '2017-12-10', 'Grupo Eng de Soft', 2) [42102-196]
+2017-12-10 19:10:10 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM USER
+UPDATE USER[*] SET "; SQL statement:
+select * from user
+update user set [42000-196]
+2017-12-10 19:10:12 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM USER
+UPDATE USER[*] SET "; SQL statement:
+select * from user
+update user set [42000-196]

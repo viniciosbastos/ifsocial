@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -44,6 +45,10 @@ public class User {
 
 	@Column(name = "dt_birth")
 	private Date birthday;
+
+	@OneToOne
+	@JoinColumn(name = "profile_image")
+	private File profileImage;
 
 	@JsonIgnore
 	@ManyToOne
@@ -149,6 +154,14 @@ public class User {
 		this.registration = registration;
 	}
 
+	public File getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(File profileImage) {
+		this.profileImage = profileImage;
+	}
+
 	public Profile getProfile() {
 		return profile;
 	}
@@ -220,5 +233,5 @@ public class User {
 	public void setFollowing(Set<UserFollow> following) {
 		this.following = following;
 	}
-	
+
 }
