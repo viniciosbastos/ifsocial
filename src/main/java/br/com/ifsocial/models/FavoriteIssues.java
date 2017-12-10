@@ -20,7 +20,7 @@ public class FavoriteIssues {
 	private User user;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "issue_id")
 	private Issue issue;
 	
 	public FavoriteIssues() {}

@@ -28,7 +28,7 @@ public class PrivateMessage {
 	private User sender;
 	
 	@ManyToOne
-	@JoinColumn(name = "sender")
+	@JoinColumn(name = "receiver")
 	private User receiver;
 	
 	public PrivateMessage() {}

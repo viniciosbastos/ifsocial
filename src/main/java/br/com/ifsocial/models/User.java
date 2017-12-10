@@ -76,11 +76,11 @@ public class User {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "followed", fetch = FetchType.LAZY)
-	private Set<Issue> followers = new HashSet<Issue>();
+	private Set<UserFollow> followers = new HashSet<UserFollow>();
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private Set<Issue> following = new HashSet<Issue>();
+	private Set<UserFollow> following = new HashSet<UserFollow>();
 
 	public User() {
 	}
@@ -155,5 +155,70 @@ public class User {
 
 	public void setProfile(Profile profile) {
 		this.profile = profile;
-	}	
+	}
+
+	public Set<Group> getGroupsCreated() {
+		return groupsCreated;
+	}
+
+	public void setGroupsCreated(Set<Group> groupsCreated) {
+		this.groupsCreated = groupsCreated;
+	}
+
+	public Set<Issue> getIssuesCreated() {
+		return issuesCreated;
+	}
+
+	public void setIssuesCreated(Set<Issue> issuesCreated) {
+		this.issuesCreated = issuesCreated;
+	}
+
+	public Set<IssueMessage> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<IssueMessage> comments) {
+		this.comments = comments;
+	}
+
+	public Set<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
+	}
+
+	public Set<PrivateMessage> getMessagesReceived() {
+		return messagesReceived;
+	}
+
+	public void setMessagesReceived(Set<PrivateMessage> messagesReceived) {
+		this.messagesReceived = messagesReceived;
+	}
+
+	public Set<PrivateMessage> getMessagesSent() {
+		return messagesSent;
+	}
+
+	public void setMessagesSent(Set<PrivateMessage> messagesSent) {
+		this.messagesSent = messagesSent;
+	}
+
+	public Set<UserFollow> getFollowers() {
+		return followers;
+	}
+
+	public void setFollowers(Set<UserFollow> followers) {
+		this.followers = followers;
+	}
+
+	public Set<UserFollow> getFollowing() {
+		return following;
+	}
+
+	public void setFollowing(Set<UserFollow> following) {
+		this.following = following;
+	}
+	
 }

@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity(name = "group")
+@Entity(name = "groups")
 public class Group {
 	
 	@Id
