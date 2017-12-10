@@ -10,9 +10,13 @@ Tecnologias utilizadas: Para o desenvolvimento do backend será utilizado Java +
 (GET) /user/{userId}
 
 Retorna as informações para a homepage do usuário: posts de amigos, sugestão de amigos e issues favoritadas.
+
 Exemplo:
+
 Request: /user/3
+
 Response:
+```json
 {
     "sucess": true,
     "data": {
@@ -46,14 +50,18 @@ Response:
         ]
     }
 }
-	
+```	
 	
 (GET) /user/{userId}/groups
 
 Retorna as informações da tela "Meus Grupos": grupos que o usuário criou e os que ele participa.
+
 Exemplo:
+
 Request: /user/3/groups
+
 Response:
+```json
 {
     "sucess": true,
     "data": {
@@ -91,3 +99,4 @@ Response:
         ]
     }
 }
+```
