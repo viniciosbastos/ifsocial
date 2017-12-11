@@ -26,7 +26,7 @@ public class IssueMessage {
 	@Column(name = "message")
 	private String message;
 	
-	@Column(name = "creation")
+	@Column(name = "dt_creation")
 	private Date creation;
 	
 	@ManyToOne

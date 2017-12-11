@@ -118,3 +118,83 @@ Request: /group/1
     }
 }
 ```
+
+(GET) /issues/{issueId}
+
+Retorna as informações da Issue.
+
+Exemplo:
+
+Request: /issues/1
+
+```json
+{
+    "sucess": true,
+    "data": {
+        "issue": {
+            "name": "Teste issue",
+            "id": 1,
+            "quantity_comments": 5
+        },
+        "comments": [
+            {
+                "id": 1,
+                "message": "Testando",
+                "creation": "10/12/2017 00:00",
+                "creator": {
+                    "id": 2,
+                    "name": "Francisco Aguiar",
+                    "imagePath": "https://vignette.wikia.nocookie.net/gameofthrones/images/e/e6/House-Frey-Main-Shield.PNG/revision/latest?cb=20170523011255"
+                },
+                "responses": [
+                    {
+                        "id": 4,
+                        "message": "Teste 2",
+                        "creation": "10/12/2017 00:00",
+                        "creator": {
+                            "id": 3,
+                            "name": "Aurelio Vinicios",
+                            "imagePath": "https://i.pinimg.com/236x/90/7e/73/907e73f8a7a93fb60da9b9998741f767--window-decals-window-wall.jpg"
+                        },
+                        "responses": null
+                    },
+                    {
+                        "id": 5,
+                        "message": "Teste 3",
+                        "creation": "10/12/2017 00:00",
+                        "creator": {
+                            "id": 2,
+                            "name": "Francisco Aguiar",
+                            "imagePath": "https://vignette.wikia.nocookie.net/gameofthrones/images/e/e6/House-Frey-Main-Shield.PNG/revision/latest?cb=20170523011255"
+                        },
+                        "responses": null
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "message": "Teste 2",
+                "creation": "10/12/2017 00:00",
+                "creator": {
+                    "id": 3,
+                    "name": "Aurelio Vinicios",
+                    "imagePath": "https://i.pinimg.com/236x/90/7e/73/907e73f8a7a93fb60da9b9998741f767--window-decals-window-wall.jpg"
+                },
+                "responses": [
+                    {
+                        "id": 3,
+                        "message": "Teste 2",
+                        "creation": "10/12/2017 00:00",
+                        "creator": {
+                            "id": 4,
+                            "name": "Renan Silva",
+                            "imagePath": "http://www.tshirtvortex.net/wp-content/uploads/Lannister-Lion.jpg"
+                        },
+                        "responses": null
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
