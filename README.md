@@ -5,6 +5,8 @@ Projeto para a cadeira de Engenharia de Software do IFCE.
 Objetivo: Desenvolver uma rede social.
 Tecnologias utilizadas: Para o desenvolvimento do backend será utilizado Java + Spring MVC + Spring Boot para criar uma API REST.
 
+Deploy feito nos servidores Heroku. Base Url: https://pacific-stream-91568.herokuapp.com/
+
 # API
 
 
@@ -14,7 +16,7 @@ Retorna as informações da tela de perfil do usuário, trazendo suas informaç�
 
 Exemplo:
 
-Request: /user/3
+Request: https://pacific-stream-91568.herokuapp.com/user/3
 
 
 ```json
@@ -51,7 +53,7 @@ Request: /user/3
 }
 ```
 
-(GET) /user/home/{userId}
+(GET) https://pacific-stream-91568.herokuapp.com/user/home/{userId}
 
 Retorna as informações para a homepage do usuário: posts de amigos, sugestão de amigos e issues favoritadas.
 
@@ -90,7 +92,7 @@ Response:
 }
 ```	
 	
-(GET) /user/{userId}/groups
+(GET) https://pacific-stream-91568.herokuapp.com/user/{userId}/groups
 
 Retorna as informações da tela "Meus Grupos": grupos que o usuário criou e os que ele participa.
 
@@ -137,7 +139,7 @@ Response:
 }
 ```
 
-(GET) /group/{groupId}
+(GET) https://pacific-stream-91568.herokuapp.com/group/{groupId}
 
 Retorna as informações da tela do grupo.
 
@@ -163,7 +165,7 @@ Request: /group/1
 }
 ```
 
-(GET) /issues/{issueId}
+(GET) https://pacific-stream-91568.herokuapp.com/issues/{issueId}
 
 Retorna as informações da Issue.
 
