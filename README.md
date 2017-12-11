@@ -53,13 +53,13 @@ Request: https://pacific-stream-91568.herokuapp.com/user/3
 }
 ```
 
-(GET) https://pacific-stream-91568.herokuapp.com/user/home/{userId}
+(GET) /user/home/{userId}
 
 Retorna as informações para a homepage do usuário: posts de amigos, sugestão de amigos e issues favoritadas.
 
 Exemplo:
 
-Request: /user/home/3
+Request: https://pacific-stream-91568.herokuapp.com/user/home/3
 
 Response:
 ```json
@@ -92,13 +92,13 @@ Response:
 }
 ```	
 	
-(GET) https://pacific-stream-91568.herokuapp.com/user/{userId}/groups
+(GET) /user/{userId}/groups
 
 Retorna as informações da tela "Meus Grupos": grupos que o usuário criou e os que ele participa.
 
 Exemplo:
 
-Request: /user/3/groups
+Request: https://pacific-stream-91568.herokuapp.com/user/3/groups
 
 Response:
 ```json
@@ -139,13 +139,13 @@ Response:
 }
 ```
 
-(GET) https://pacific-stream-91568.herokuapp.com/group/{groupId}
+(GET) /group/{groupId}
 
 Retorna as informações da tela do grupo.
 
 Exemplo:
 
-Request: /group/1
+Request: https://pacific-stream-91568.herokuapp.com/group/1
 
 ```json
 {
@@ -165,13 +165,13 @@ Request: /group/1
 }
 ```
 
-(GET) https://pacific-stream-91568.herokuapp.com/issues/{issueId}
+(GET) /issues/{issueId}
 
 Retorna as informações da Issue.
 
 Exemplo:
 
-Request: /issues/1
+Request: https://pacific-stream-91568.herokuapp.com/issues/1
 
 ```json
 {
