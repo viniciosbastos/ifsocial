@@ -5,15 +5,25 @@ import java.util.Collection;
 import java.util.List;
 
 import br.com.ifsocial.models.Post;
+import br.com.ifsocial.models.User;
 
-public class HomepageInfoDTO implements IResponseDTO{
-	
+public class ProfileDTO implements IResponseDTO {
+
+	private User userData;
+
 	private Collection<PostDTO> posts;
 
-	public HomepageInfoDTO() {}
-	
-	public HomepageInfoDTO(Collection<Post> posts) {
-		this.posts = this.convertPostToPostDTO(posts);		
+	public ProfileDTO(User user, Collection<Post> posts) {
+		this.userData = user;
+		this.posts = convertPostToPostDTO(posts);
+	}
+
+	public User getUserData() {
+		return userData;
+	}
+
+	public void setUserData(User userData) {
+		this.userData = userData;
 	}
 
 	public Collection<PostDTO> getPosts() {
@@ -22,8 +32,8 @@ public class HomepageInfoDTO implements IResponseDTO{
 
 	public void setPosts(Collection<PostDTO> posts) {
 		this.posts = posts;
-	}	
-	
+	}
+
 	private Collection<PostDTO> convertPostToPostDTO(Collection<Post> posts) {
 		List<PostDTO> dto = new ArrayList<>();
 		for (Post post : posts) {

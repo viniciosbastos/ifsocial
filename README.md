@@ -7,13 +7,57 @@ Tecnologias utilizadas: Para o desenvolvimento do backend será utilizado Java +
 
 # API
 
+
 (GET) /user/{userId}
+
+Retorna as informações da tela de perfil do usuário, trazendo suas informações pessoais e posts feitos por ele;
+
+Exemplo:
+
+Request: /user/3
+
+
+```json
+{
+    "sucess": true,
+    "data": {
+        "userData": {
+            "id": 3,
+            "registration": 333333,
+            "name": "Aurelio Vinicios",
+            "address": null,
+            "interests": null,
+            "email": "aurelio.vinicios@ifce.edu.br",
+            "birthday": null,
+            "profileImage": {
+                "id": 1,
+                "name": "profile_vinicios",
+                "path": "https://i.pinimg.com/236x/90/7e/73/907e73f8a7a93fb60da9b9998741f767--window-decals-window-wall.jpg"
+            }
+        },
+        "posts": [
+            {
+                "id": 2,
+                "text": "Teste post Aurelio",
+                "creation": "10/12/2017 13:00",
+                "creator": {
+                    "id": 3,
+                    "name": "Aurelio Vinicios",
+                    "imagePath": "https://i.pinimg.com/236x/90/7e/73/907e73f8a7a93fb60da9b9998741f767--window-decals-window-wall.jpg"
+                }
+            }
+        ]
+    }
+}
+```
+
+(GET) /user/home/{userId}
 
 Retorna as informações para a homepage do usuário: posts de amigos, sugestão de amigos e issues favoritadas.
 
 Exemplo:
 
-Request: /user/3
+Request: /user/home/3
 
 Response:
 ```json

@@ -1,4 +1,4 @@
-package br.com.ifsocial.services;
+package br.com.ifsocial.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

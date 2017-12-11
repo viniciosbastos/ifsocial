@@ -10,6 +10,7 @@ import br.com.ifsocial.dto.IssueDetailsDTO;
 import br.com.ifsocial.dto.ResponseDTO;
 import br.com.ifsocial.models.Issue;
 import br.com.ifsocial.repositories.IIssueMessageRepository;
+import br.com.ifsocial.repositories.IIssueRepository;
 
 @RestController
 @RequestMapping("/issues")
