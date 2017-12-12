@@ -18,6 +18,8 @@ public class IssueMessageDTO {
 	private CreatorDTO creator;
 
 	private Collection<IssueMessageDTO> responses;
+	
+	public IssueMessageDTO() {}
 
 	public IssueMessageDTO(IssueMessage issueMessage) {
 		this.id = issueMessage.getId();

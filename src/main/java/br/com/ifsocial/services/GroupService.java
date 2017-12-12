@@ -12,7 +12,7 @@ import br.com.ifsocial.models.Group;
 import br.com.ifsocial.repositories.IGroupRepository;
 
 @RestController
-@RequestMapping(path = "/group")
+@RequestMapping("/group")
 public class GroupService {
 
 	private final IGroupRepository groupRepository;

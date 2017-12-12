@@ -4,11 +4,15 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ifsocial.dto.HomepageInfoDTO;
+import br.com.ifsocial.dto.IResponseDTO;
+import br.com.ifsocial.dto.LoginDTO;
+import br.com.ifsocial.dto.MessageResponse;
 import br.com.ifsocial.dto.MyGroupsDTO;
 import br.com.ifsocial.dto.ProfileDTO;
 import br.com.ifsocial.dto.ResponseDTO;
@@ -43,7 +47,7 @@ public class UserService {
 	
 	@RequestMapping(path = "/home/{userId}", method = RequestMethod.GET)
 	public ResponseDTO getFriendsPosts(@PathVariable Integer userId) {
-		HomepageInfoDTO response = new HomepageInfoDTO(postRepository.getFriendsPosts(userId));
+		HomepageInfoDTO response = new HomepageInfoDTO(userRepository.findById(userId), postRepository.getFriendsPosts(userId));
 		return new ResponseDTO(true, response);
 	}
 	
@@ -53,6 +57,20 @@ public class UserService {
 		groupDTO.setCreatedByFromGroup(userRepository.findById(userId).getGroupsCreated());
 		groupDTO.setParticipateFromGroup(groupRepository.getUserGroups(userId));
 		return new ResponseDTO(true, groupDTO);
+	}
+	
+	@RequestMapping(path = "/login", method = RequestMethod.POST)
+	public ResponseDTO login(@RequestBody LoginDTO loginDTO) {
+		User user = userRepository.autenticateUser(loginDTO.getRegistration(), loginDTO.getPassword());
+		
+		IResponseDTO response = null;
+		boolean sucess = false;;
+		if (user != null) {
+			response = new HomepageInfoDTO(user, postRepository.getFriendsPosts(user.getId()));
+		} else {
+			response = new MessageResponse("Usuário não encontrado na base de dados.");
+		}
+		return new ResponseDTO(sucess, response);
 	}
 
 }

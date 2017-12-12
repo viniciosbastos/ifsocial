@@ -2,20 +2,18 @@ package br.com.ifsocial.dto;
 
 import br.com.ifsocial.models.User;
 
-public class CreatorDTO {
+public class BasicUserDTO {
 
 	private Integer id;
-
-	private String name;
-
-	private String imagePath;
 	
-	public CreatorDTO() {}
-
-	public CreatorDTO(User user) {
+	private String name;
+	
+	private String profileImage;
+	
+	public BasicUserDTO(User user) {
 		this.id = user.getId();
 		this.name = user.getName();
-		this.imagePath = user.getProfileImage().getPath();
+		this.profileImage = user.getProfileImage().getPath();
 	}
 
 	public Integer getId() {
@@ -34,12 +32,13 @@ public class CreatorDTO {
 		this.name = name;
 	}
 
-	public String getImagePath() {
-		return imagePath;
+	public String getProfileImage() {
+		return profileImage;
 	}
 
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
-
+	
+	
 }

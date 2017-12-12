@@ -9,6 +9,70 @@ Deploy feito nos servidores Heroku. Base Url: https://pacific-stream-91568.herok
 
 # API
 
+(POST) /user/login
+
+Recebe matrícula e senha e verifica autenticidade do usuário.
+
+Retorna as informações do usuário e informações da homepage;
+
+Exemplo:
+
+Request: https://pacific-stream-91568.herokuapp.com/user/login
+
+```json
+{
+    "registration": 333333,
+    "password": "123"
+}
+```
+
+Response (Sucesso)
+
+```json
+{
+    "sucess": false,
+    "data": {
+        "user": {
+            "id": 3,
+            "name": "Aurelio Vinicios",
+            "profileImage": "https://i.pinimg.com/236x/90/7e/73/907e73f8a7a93fb60da9b9998741f767--window-decals-window-wall.jpg"
+        },
+        "posts": [
+            {
+                "id": 3,
+                "text": "Teste post Renan",
+                "creation": "10/12/2017 12:30",
+                "creator": {
+                    "id": 4,
+                    "name": "Renan Silva",
+                    "imagePath": "http://www.tshirtvortex.net/wp-content/uploads/Lannister-Lion.jpg"
+                }
+            },
+            {
+                "id": 1,
+                "text": "Teste post Francisco",
+                "creation": "10/12/2017 12:00",
+                "creator": {
+                    "id": 2,
+                    "name": "Francisco Aguiar",
+                    "imagePath": "https://vignette.wikia.nocookie.net/gameofthrones/images/e/e6/House-Frey-Main-Shield.PNG/revision/latest?cb=20170523011255"
+                }
+            }
+        ]
+    }
+}
+```
+
+Response (Erro): 
+
+```
+{
+    "sucess": false,
+    "data": {
+        "message": "Usuário não encontrado na base de dados."
+    }
+}
+```
 
 (GET) /user/{userId}
 
@@ -152,26 +216,36 @@ Request: https://pacific-stream-91568.herokuapp.com/group/1
     "sucess": true,
     "data": {
         "name": "Grupo Eng de Soft",
-        "creatorName": "Francisco Aguiar",
+        "creator": {
+            "id": 2,
+            "name": "Francisco Aguiar",
+            "imagePath": "https://vignette.wikia.nocookie.net/gameofthrones/images/e/e6/House-Frey-Main-Shield.PNG/revision/latest?cb=20170523011255"
+        },
         "quantityMembers": 2,
         "issues": [
             {
                 "name": "Teste issue",
                 "id": 1,
-                "quantity_comments": 1
+                "quantity_comments": 5,
+                "creation": "10/12/2017",
+                "creator": {
+                    "id": 2,
+                    "name": "Francisco Aguiar",
+                    "imagePath": "https://vignette.wikia.nocookie.net/gameofthrones/images/e/e6/House-Frey-Main-Shield.PNG/revision/latest?cb=20170523011255"
+                }
             }
         ]
     }
 }
 ```
 
-(GET) /issues/{issueId}
+(GET) /group/{groupId}/issues/{issueId}
 
 Retorna as informações da Issue.
 
 Exemplo:
 
-Request: https://pacific-stream-91568.herokuapp.com/issues/1
+Request: https://pacific-stream-91568.herokuapp.com/group/1/issues/1
 
 ```json
 {
@@ -180,7 +254,13 @@ Request: https://pacific-stream-91568.herokuapp.com/issues/1
         "issue": {
             "name": "Teste issue",
             "id": 1,
-            "quantity_comments": 5
+            "quantity_comments": 5,
+            "creation": "10/12/2017",
+            "creator": {
+                "id": 2,
+                "name": "Francisco Aguiar",
+                "imagePath": "https://vignette.wikia.nocookie.net/gameofthrones/images/e/e6/House-Frey-Main-Shield.PNG/revision/latest?cb=20170523011255"
+            }
         },
         "comments": [
             {
@@ -242,5 +322,63 @@ Request: https://pacific-stream-91568.herokuapp.com/issues/1
             }
         ]
     }
+}
+```
+
+(POST) /group/{groupId}/issues/new
+
+Insere uma nova issue na base de dados.
+
+Exemplo:
+
+Request: https://pacific-stream-91568.herokuapp.com/group/1/issues/new
+
+```json
+{
+    "name": "Teste Insert Issue",
+    "creation": "11/12/2017",
+    "creator": {
+        "id": 2
+    }
+}
+```
+
+Response:
+
+```json
+{
+	"sucess": true,
+	"data": {
+		"message": "Issue inserida com sucesso."
+	}
+}
+```
+
+(POST) /group/{groupId}/issues/{issueId}/comments/new
+
+Insere um novo comentário na issue.
+
+Exemplo:
+
+Request: https://pacific-stream-91568.herokuapp.com/group/1/issues/1/comments/new
+
+```json
+{
+    "message": "Teste Insert IssueMessage",
+    "creation": "11/12/2017",
+    "creator": {
+        "id": 3
+    }
+}
+```
+
+Response:
+
+```json
+{
+	"sucess": true,
+	"data": {
+		"message": "Comentário inserido com sucesso."
+	}
 }
 ```
