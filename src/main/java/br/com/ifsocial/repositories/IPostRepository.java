@@ -10,7 +10,7 @@ import br.com.ifsocial.models.Post;
 
 public interface IPostRepository extends JpaRepository<Post, Integer>{
 	
-	@Query("select p from post p where p.creator in (select u.followed from user_follow u where u.user.id = :userId) order by p.creation desc")
+	@Query("select p from post p where p.creator in (select u.followed from user_follow u where u.user.id = :userId) or p.creator.id = :userId order by p.creation desc")
 	public Collection<Post> getFriendsPosts(@Param("userId") Integer userId);
 	
 	public Collection<Post> findByCreatorId(Integer creatorId);

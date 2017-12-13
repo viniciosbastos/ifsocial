@@ -56,4 +56,30 @@ public class IssueMessageService {
 		
 		return new ResponseDTO(true, new MessageResponse("Comentário inserido com sucesso."));
 	}
+	
+	@RequestMapping(path = "/{commentId}/response", method = RequestMethod.POST)
+	public ResponseDTO newResponse(@PathVariable Integer issueId, 
+								   @PathVariable Integer commentId, 
+								   @RequestBody IssueMessageDTO newIssueMessage) {
+		
+		Issue issue = issueRepository.findById(issueId);
+		User user = userRepository.findById(newIssueMessage.getCreator().getId());
+		IssueMessage parent = issueMessageRepository.findById(commentId);
+		
+		IssueMessage issueMessage = new IssueMessage();
+		try {
+			issueMessage.setCreator(user);
+			issueMessage.setIssue(issue);
+			issueMessage.setMessage(newIssueMessage.getMessage());
+			issueMessage.setCreation(new SimpleDateFormat("dd/MM/yyyy").parse(newIssueMessage.getCreation()));
+			issueMessage.setParent(parent);
+			
+			issueMessageRepository.save(issueMessage);
+			this.issueRepository.save(issue);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseDTO(true, new MessageResponse("Comentário inserido com sucesso."));
+	}
 }

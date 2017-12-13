@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import br.com.ifsocial.models.Issue;
 import br.com.ifsocial.models.Post;
 import br.com.ifsocial.models.User;
 
@@ -13,11 +14,14 @@ public class HomepageInfoDTO implements IResponseDTO {
 
 	private Collection<PostDTO> posts;
 
+	private Collection<IssueDTO> favoriteIssues;
+
 	public HomepageInfoDTO() {
 	}
 
-	public HomepageInfoDTO(User user, Collection<Post> posts) {
+	public HomepageInfoDTO(User user, Collection<Post> posts, Collection<Issue> issues) {
 		this.posts = this.convertPostToPostDTO(posts);
+		this.favoriteIssues = this.convertIssueToIssueDTO(issues);
 		this.user = new BasicUserDTO(user);
 	}
 
@@ -37,10 +41,26 @@ public class HomepageInfoDTO implements IResponseDTO {
 		this.user = user;
 	}
 
+	public Collection<IssueDTO> getFavoriteIssues() {
+		return favoriteIssues;
+	}
+
+	public void setFavoriteIssues(Collection<IssueDTO> favoriteIssues) {
+		this.favoriteIssues = favoriteIssues;
+	}
+
 	private Collection<PostDTO> convertPostToPostDTO(Collection<Post> posts) {
 		List<PostDTO> dto = new ArrayList<>();
 		for (Post post : posts) {
 			dto.add(new PostDTO(post));
+		}
+		return dto;
+	}
+
+	private Collection<IssueDTO> convertIssueToIssueDTO(Collection<Issue> issues) {
+		List<IssueDTO> dto = new ArrayList<>();
+		for (Issue issue : issues) {
+			dto.add(new IssueDTO(issue));
 		}
 		return dto;
 	}

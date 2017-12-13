@@ -119,7 +119,7 @@ Request: https://pacific-stream-91568.herokuapp.com/user/3
 
 (GET) /user/home/{userId}
 
-Retorna as informações para a homepage do usuário: posts de amigos, sugestão de amigos e issues favoritadas.
+Retorna as informações para a homepage do usuário: posts de amigos e do usuário, sugestão de amigos e issues favoritadas.
 
 Exemplo:
 
@@ -130,7 +130,42 @@ Response:
 {
     "sucess": true,
     "data": {
+        "user": {
+            "id": 3,
+            "name": "Aurelio Vinicios",
+            "profileImage": "https://i.pinimg.com/236x/90/7e/73/907e73f8a7a93fb60da9b9998741f767--window-decals-window-wall.jpg"
+        },
         "posts": [
+            {
+                "id": 4,
+                "text": "Teste insert post",
+                "creation": "12/12/2017 00:00",
+                "creator": {
+                    "id": 3,
+                    "name": "Aurelio Vinicios",
+                    "imagePath": "https://i.pinimg.com/236x/90/7e/73/907e73f8a7a93fb60da9b9998741f767--window-decals-window-wall.jpg"
+                }
+            },
+            {
+                "id": 5,
+                "text": "VAI CURINTIAAAAAA!!!!",
+                "creation": "12/12/2017 00:00",
+                "creator": {
+                    "id": 4,
+                    "name": "Renan Silva",
+                    "imagePath": "http://www.tshirtvortex.net/wp-content/uploads/Lannister-Lion.jpg"
+                }
+            },
+            {
+                "id": 2,
+                "text": "Teste post Aurelio",
+                "creation": "10/12/2017 13:00",
+                "creator": {
+                    "id": 3,
+                    "name": "Aurelio Vinicios",
+                    "imagePath": "https://i.pinimg.com/236x/90/7e/73/907e73f8a7a93fb60da9b9998741f767--window-decals-window-wall.jpg"
+                }
+            },
             {
                 "id": 3,
                 "text": "Teste post Renan",
@@ -149,6 +184,19 @@ Response:
                     "id": 2,
                     "name": "Francisco Aguiar",
                     "imagePath": "https://vignette.wikia.nocookie.net/gameofthrones/images/e/e6/House-Frey-Main-Shield.PNG/revision/latest?cb=20170523011255"
+                }
+            }
+        ],
+        "favoriteIssues": [
+            {
+                "name": "Droga de Issue de merda",
+                "id": 3,
+                "quantity_comments": 3,
+                "creation": "12/12/2017",
+                "creator": {
+                    "id": 4,
+                    "name": "Renan Silva",
+                    "imagePath": "http://www.tshirtvortex.net/wp-content/uploads/Lannister-Lion.jpg"
                 }
             }
         ]
@@ -382,3 +430,148 @@ Response:
 	}
 }
 ```
+
+(POST) /user/{userId}/update
+
+Atualiza as informações do usuário na base de dados.
+Campos possíveis: Nome, Endereço, Email, Interesses e Data de Nascimento
+
+Exemplo:
+
+Request: https://pacific-stream-91568.herokuapp.com/user/3/update
+
+```json
+{
+    "name": "Aurelio Vinicios",
+    "email": "aurelio.vinicios@ifce.edu.br",
+    "address": "Rua Bartolomeu Gusmão, 1025"
+}
+```
+
+Response:
+
+```json
+{
+    "sucess": true,
+    "data": {
+        "message": "Alteração realizada com sucesso."
+    }
+}
+```
+
+(GET) /user/search/{name}
+
+Busca usuário que possua em seu nome a variável "name"
+
+Exemplo:
+
+Request: https://pacific-stream-91568.herokuapp.com/user/search/a
+
+Response:
+
+```json
+{
+    "sucess": true,
+    "data": {
+        "users": [
+            {
+                "id": 2,
+                "name": "Francisco Aguiar",
+                "profileImage": "https://vignette.wikia.nocookie.net/gameofthrones/images/e/e6/House-Frey-Main-Shield.PNG/revision/latest?cb=20170523011255"
+            },
+            {
+                "id": 4,
+                "name": "Renan Silva",
+                "profileImage": "http://www.tshirtvortex.net/wp-content/uploads/Lannister-Lion.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Aurelio Vinicios",
+                "profileImage": "https://i.pinimg.com/236x/90/7e/73/907e73f8a7a93fb60da9b9998741f767--window-decals-window-wall.jpg"
+            }
+        ]
+    }
+}
+```
+
+(POST) /post/new
+
+Cria um novo post e insere na base de dados.
+
+Exemplo:
+
+Request: https://pacific-stream-91568.herokuapp.com/post/new
+
+```json
+{
+    "text": "Teste insert post",
+    "creation": "12/12/2017",
+	"creator":  {
+		"id": 3
+	}
+}
+```
+
+Response:
+
+```json
+{
+    "sucess": true,
+    "data": {
+        "message": "Post inserido com sucesso."
+    }
+}
+```
+
+(POST) /group/{groupId}/issues/{issueId}/comments/{commentId}/response
+
+Insere um novo comentário na issue.
+
+Exemplo:
+
+Request: https://pacific-stream-91568.herokuapp.com/group/1/issues/3/comments/8/response
+
+```json
+{
+    "message": "é isso ai",
+    "creation": "12/12/2017",
+    "creator": {
+        "id": 3
+    }
+}
+```
+
+Response:
+
+```json
+{
+    "sucess": true,
+    "data": {
+        "message": "Comentário inserido com sucesso."
+    }
+}
+```
+
+(GET) /group/{groupId}/issues/{issueId}/favorite?userId={userId}
+
+Favorita a issue.
+
+Exemplo:
+
+Request: https://pacific-stream-91568.herokuapp.com/group/1/issues/3/favorite?userId=3
+
+
+Response:
+
+```json
+{
+    "sucess": true,
+    "data": {
+        "message": "Issue favoritada com sucesso."
+    }
+}
+```
+
+
+
+

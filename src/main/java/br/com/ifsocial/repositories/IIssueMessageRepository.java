@@ -12,4 +12,6 @@ public interface IIssueMessageRepository extends JpaRepository<IssueMessage, Int
 
 	@Query("select im from issue_message im where im.issue.id = :issueId and im.parent is null order by im.creation desc")
 	public Collection<IssueMessage> getComments(@Param("issueId") Integer issueId);
+
+	public IssueMessage findById(Integer commentId);
 }

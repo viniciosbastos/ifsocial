@@ -14,6 +14,8 @@ public class PostDTO {
 
 	private CreatorDTO creator;
 
+	public PostDTO() {}
+	
 	public PostDTO(Post post) {
 		this.id = post.getId();
 		this.text = post.getText();

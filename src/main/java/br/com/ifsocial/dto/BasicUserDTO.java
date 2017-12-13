@@ -16,6 +16,12 @@ public class BasicUserDTO {
 		this.profileImage = user.getProfileImage().getPath();
 	}
 
+	public BasicUserDTO(Integer id, String name, String path) {
+		this.id = id;
+		this.name = name;
+		this.profileImage = path;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
