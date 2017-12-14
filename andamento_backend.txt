@@ -1,11 +1,11 @@
 
+ - Seguir Usuário						OK
  - Pesquisar pessoas pelo nome			OK
  - Inserir Post							OK
  - Inserir resposta a Comentário		OK
  - Atualizar Usuario					OK
- - Favoritar Issue						ok
+ - Favoritar Issue						OK
  - Criar grupo de professores			
  - Criar grupo de aluno					
  - Convidar pessoas para o grupo		
-
- - Aceitar convite
+ - Aceitar convite						

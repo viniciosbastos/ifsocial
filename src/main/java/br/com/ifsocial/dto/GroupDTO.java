@@ -16,12 +16,15 @@ public class GroupDTO implements IResponseDTO {
 
 	private Collection<IssueDTO> issues;
 
+	private Integer type;
+
 	public GroupDTO() {
 	}
 
 	public GroupDTO(Group group) {
 		this.name = group.getName();
 		this.creator = new CreatorDTO(group.getCreator());
+		this.type = group.getType();
 
 		this.issues = new ArrayList<>();
 		for (Issue issue : group.getIssues()) {
@@ -60,4 +63,13 @@ public class GroupDTO implements IResponseDTO {
 	public void setIssues(Collection<IssueDTO> issues) {
 		this.issues = issues;
 	}
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
 }

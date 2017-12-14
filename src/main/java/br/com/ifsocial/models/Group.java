@@ -18,31 +18,35 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "groups")
 public class Group {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "dt_creation")
 	private Date creation;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "creator_id")
 	private User creator;
-	
+
+	@Column(name = "type")
+	private Integer type;
+
 	@JsonIgnore
-	@OneToMany(mappedBy = "group", fetch = FetchType.LAZY)	
+	@OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
 	private Set<GroupFile> files = new HashSet<GroupFile>();
-	
+
 	@JsonIgnore
-	@OneToMany(mappedBy = "group", fetch = FetchType.LAZY)	
+	@OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
 	private Set<Issue> issues = new HashSet<Issue>();
 
-	public Group() {}
+	public Group() {
+	}
 
 	public Integer getId() {
 		return id;
@@ -91,6 +95,13 @@ public class Group {
 	public void setIssues(Set<Issue> issues) {
 		this.issues = issues;
 	}
-	
-	
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
 }

@@ -19,9 +19,11 @@ import br.com.ifsocial.dto.ResponseDTO;
 import br.com.ifsocial.dto.SearchUserResponse;
 import br.com.ifsocial.models.Post;
 import br.com.ifsocial.models.User;
+import br.com.ifsocial.models.UserFollow;
 import br.com.ifsocial.repositories.IFavoriteIssueRepository;
 import br.com.ifsocial.repositories.IGroupRepository;
 import br.com.ifsocial.repositories.IPostRepository;
+import br.com.ifsocial.repositories.IUserFollowRepository;
 import br.com.ifsocial.repositories.IUserRepository;
 
 @RestController
@@ -32,13 +34,15 @@ public class UserService {
 	private final IGroupRepository groupRepository;
 	private final IPostRepository postRepository;
 	private final IFavoriteIssueRepository favoriteIssueRepositry;
+	private final IUserFollowRepository userFollowRepositry;
 
 	@Autowired
-	UserService (IUserRepository userRepository, IPostRepository postRepository, IGroupRepository userFollowRepository, IFavoriteIssueRepository favoriteIssueRepositry) {
+	UserService (IUserRepository userRepository, IPostRepository postRepository, IGroupRepository userFollowRepository, IFavoriteIssueRepository favoriteIssueRepositry, IUserFollowRepository userFollowRepositry) {
 		this.userRepository = userRepository;
 		this.postRepository = postRepository;
 		this.groupRepository = userFollowRepository;
 		this.favoriteIssueRepositry = favoriteIssueRepositry;
+		this.userFollowRepositry = userFollowRepositry;
 	}
 
 	@RequestMapping(path = "/{userId}", method = RequestMethod.GET)
@@ -96,4 +100,17 @@ public class UserService {
 		return new ResponseDTO(true, new MessageResponse("Alteração realizada com sucesso."));
 	}
 
+	@RequestMapping(path = "/{userId}/follow/{toFollow}", method = RequestMethod.GET)
+	public ResponseDTO followUser(@PathVariable Integer userId, @PathVariable Integer toFollow) {
+		User user = userRepository.findById(userId);
+		User usserToFollow = userRepository.findById(toFollow);
+		
+		UserFollow userFollow = new UserFollow();
+		userFollow.setUser(user);
+		userFollow.setFollowed(usserToFollow);
+		
+		userFollowRepositry.save(userFollow);
+		
+		return new ResponseDTO(true, new MessageResponse("Operação concluída"));
+	}
 }

@@ -572,6 +572,57 @@ Response:
 }
 ```
 
+(GET) user/{userId}/follow/{toFollow}
+
+service para registrar que um usuário deseja seguir outro;
+{userId} => usuário logado.
+{toFollow} => usuário a ser seguido
+
+
+Exemplo:
+
+Request: https://pacific-stream-91568.herokuapp.com/user/2/follow/3
+
+Response:
+
+```json
+{
+    "sucess": true,
+    "data": {
+        "message": "Operação concluída"
+    }
+}
+```
+
+(POST) /group/new
+
+service para criar um novo grupo
+
+
+Exemplo:
+
+Request: https://pacific-stream-91568.herokuapp.com/group/new
+
+```json
+{
+	"name": "SEMB",
+	"type": 2,
+	"creator": {
+		"id": 2
+	}
+}
+```
+
+Response:
+
+```json
+{
+    "sucess": true,
+    "data": {
+        "message": "Grupo criado com sucesso."
+    }
+}
+```
 
 
 
